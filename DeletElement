@@ -42,7 +42,13 @@ public:
         }
           cout << endl;
     }
-    void DeletElement(int x){
+    void DeletElement(int x){  
+      if (head->data==x){
+        Node* y=head;
+        head=head->next;
+        delete y;
+        return;
+    }
     Node* i=head;
     Node* prev=head;
 
