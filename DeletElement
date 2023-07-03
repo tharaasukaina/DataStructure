@@ -42,20 +42,24 @@ public:
         }
           cout << endl;
     }
-    void DeletElement(int x){  
-      if (head->data==x){
+    void DeletElement(int x){
+
+    if (head->data==x){
         Node* y=head;
         head=head->next;
         delete y;
         return;
     }
+
+
     Node* i=head;
     Node* prev=head;
 
     while(i!=nullptr){
         if(i->data==x){
-                
+
             prev->next=i->next;
+            delete i;
         return;
     }
         else{
@@ -71,13 +75,17 @@ int main()
     l.add(2);
     l.add(3);
     l.add(9);
+    l.add(7);
+    
     l.print();
-    l.DeletElement(3);
+    l.DeletElement(2);
     l.print();
 
 
 
     return 0;
+
+
 
 };
 
