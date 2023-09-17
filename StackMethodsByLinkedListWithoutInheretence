@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+class Node
+{
+public:
+    int data;
+
+    Node* next;
+};
+class Stack
+{
+private:
+    Node* head;
+    Node* tail;
+    int length;
+public :
+    Stack() {
+        head=NULL;
+        tail=NULL;
+        length=0;
+    }
+
+    int size () {
+        return length;
+    }
+    bool empty() {
+        return length==0;
+
+    }
+    void push( int x ) {
+        Node* n = new Node;
+        n->data = x;
+        n->next = NULL;
+        if (head == NULL) {
+            head = n;
+            tail = n;
+        } else {
+            n->next = head;
+            head = n;
+        }
+      //addtofirst
+    length++;
+}
+    void pop() {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;//delet from head
+        length--;
+    }
+    int top() {
+        return head->data;
+
+    }
+
+};
+
+int main ()
+{
+    Stack m;
+    m.push(10);
+    m.push(20);
+    m.push(30);
+    cout<<m.size();
+
+    return 0;
+}
