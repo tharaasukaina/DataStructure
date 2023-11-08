@@ -1,0 +1,111 @@
+
+public class ArrayList {
+
+    private int[] arr ;
+    private int size = 0;
+    private int capacity;
+    
+    public ArrayList() {
+   
+        capacity = 10;
+        arr = new int[capacity];
+    }
+    public void ensoureCapacity() {
+      capacity=capacity*2;
+      int[] temp = new int[capacity];
+        for (int i = 0; i < size; i++) {
+            temp[i] = arr[i];
+        }
+        arr = temp;
+
+    }
+
+    public void add(int value) {
+        if (size == capacity) {
+            ensoureCapacity();
+        }
+        arr[size] = value;
+        size++;
+    }
+    public void print(){
+        for(int i=0;i<size;i++){
+            System.out.print( arr[i]+ " ");
+        }
+    }
+    public void deletFromLast(){
+        
+        if (size!=0){
+           size--;
+        }
+    }
+    public void addToFirst ( int value){
+        if (size==capacity){
+            ensoureCapacity();
+        }
+        for(int i=size-1;i>=0;i--){
+            arr[i+1]=arr[i];
+        }
+        arr[0]=value;
+        size++;
+    }
+    public void removeFromFirst(){
+        if (size==0) return ;
+        for(int i=0;i<=size;i++){
+            arr[i]=arr[i+1];
+        }
+        size--;
+    }
+  
+              
+        public  void update(int value,int index ){
+          if (index>=0 && index<size){
+              arr[index]=value;
+          }
+    }
+    public void removeByIndex (int index ){
+        if ( size==0) return ;
+        for(int i=index;i<size;i++){
+           arr[i]=arr[i+1];
+            }
+          size--;
+          }
+          
+          public void addToIndex(int value,int index){
+              if ( size==capacity){
+                  ensoureCapacity();
+              }
+               for(int i=size-1;i>=index;i--){
+              arr[i+1]=arr[i];
+               }
+              arr[index]=value;
+              size++;
+               }
+          public boolean  search(int value){
+              if ( size ==0) {
+                  return false;
+              }
+              for(int i=0;i<size;i++){
+                  if (arr[i]== value) {
+                  return true ;
+                  }
+              }
+                      return false;
+              
+          }
+          public void clear (){
+              for(int i=0;i<size;i++){
+                  removeByIndex(size);
+    
+              }
+          }
+          
+    public static void main(String[] args) {
+        ArrayList list = new ArrayList();
+        list.add(10);
+        list.add(90);
+        list.add(30);
+       
+       list.print();
+    
+    }
+}
