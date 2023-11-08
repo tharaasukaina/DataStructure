@@ -1,0 +1,149 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+	int data;
+	Node* next;
+};
+
+class LinkedList {
+public:
+	Node* head = NULL;
+	Node* tail = NULL;
+
+	void addToTail(int x) {
+		Node* n = new Node;
+		n->data = x;
+		n->next = NULL;
+
+		//if linked list is empty 
+		if (head == NULL) {
+			head = n;
+			tail = n;
+		}
+		else {
+			tail->next = n;
+			tail = n;
+		}
+	}
+	void addToFirst(int x) {
+		Node* n = new Node;
+		n->data = x;
+		n->next = NULL;
+		if (head == NULL) {
+			head = n;
+			tail = n;
+		}
+		else {
+			n->next = head;
+			head = n;
+		}
+	}
+	void addAfterElement(int e, int x) {
+		Node* n = new Node;
+		n->data = x;
+		n->next = NULL;
+		Node* i = head;
+		while (i != NULL) {
+			if (i->data == e) {
+				n->next = i->next;
+				i->next = n;
+				return;
+			}
+			else {
+				i = i->next;
+			}
+		}
+	}
+	string search(int x) {
+		Node* i = head;
+		while (i != NULL) {
+			if (i->data == x) {
+				return "Found";
+			}
+			else {
+				i = i->next;
+			}
+		}
+
+		return "Not Found";
+	}
+	void deleteElement(int x) {
+		if (head->data == x) {
+			Node* t = head;
+			head = head->next;
+			delete t;
+			return;
+		}
+		Node* prev = head;
+		Node* i = head;
+		while (i != NULL) {
+			if (i->data == x) {
+				prev->next = i->next;
+				delete i;
+				return;
+			}
+			else {
+				prev = i;
+				i = i->next;
+			}
+		}
+	}
+	void deleteFromTail() {
+		Node* i = head;
+		while (i != NULL) {
+			if (i->next->next == NULL) {
+				Node* temp = tail;
+				tail = i;
+				tail->next = NULL;
+				delete temp;
+				return;
+			}
+			else {
+				i = i->next;
+			}
+		}
+	}
+	void deleteFromHead() {
+		Node* temp = head;
+		head = head->next;
+		delete temp;
+		return;
+	}
+	void deleteTheIthElement(int pos) {
+		Node* c = NULL;
+		Node* p = NULL;
+		int counter = 1;
+		int pplace = pos - 1;
+		int cplace = pos;
+	}
+	};
+class  Stack  : private LinkedList {
+  public:
+    Stack (){
+    //    head=NULL;
+     //   tail=NULL;
+    }
+    void push (int x){
+       this->addToFirst(x); 
+    }
+    int top(){
+      return  this->head->data;
+    }
+    void pop (){
+        this->deleteFromHead();
+    }
+
+};
+
+int main (){
+   Stack m;
+   m.push(10); m.push(20); m.push(30);
+   cout<<m.top();
+   m.pop();
+    cout<<"\n";
+    cout<<m.top();
+   return 0;
+}
+	
